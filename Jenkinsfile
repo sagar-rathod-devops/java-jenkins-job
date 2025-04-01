@@ -1,26 +1,25 @@
 pipeline { 
-    agent any 
-    stages { 
-        stage('Checkout') { 
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sagar-rathod-devops/java-jenkins-job.git'
+            }
+        }
+        stage('Build Java Application') { 
             steps { 
-                git 'https://github.com/sagar-rathod-devops/java-jenkins-job.git' 
+                bat 'mvn clean package'  // Change from mvnw.cmd to mvn
             } 
-        } 
-        stage('Build') { 
+        }
+        stage('Build Docker Image') { 
             steps { 
-                echo 'Compiling code...' 
+                bat 'docker build -t my-java-app .' 
             } 
-        } 
-        stage('Test') { 
+        }
+        stage('Run Docker Container') { 
             steps { 
-                echo 'Running test cases...' 
+                bat 'docker run -d -p 8000:8000 my-java-app' 
             } 
-        } 
-        stage('Deploy') { 
-            steps { 
-                echo 'Deploying application...' 
-            } 
-} 
-221 
-} 
-} 
+        }
+    }
+}
