@@ -6,20 +6,22 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/sagar-rathod-devops/java-jenkins-job.git'
             }
         }
-        stage('Build') { 
+        stage('Build Java Application') { 
             steps { 
-                echo 'Compiling code...' 
+                sh './mvnw clean package' 
             } 
-        } 
-        stage('Test') { 
+        }
+
+        stage('Build Docker Image') { 
             steps { 
-                echo 'Running test cases...' 
+                sh 'docker build -t my-java-app .' 
             } 
-        } 
-        stage('Deploy') { 
+        }
+
+        stage('Run Docker Container') { 
             steps { 
-                echo 'Deploying application...' 
+                sh 'docker run -d -p 8000:8000 my-java-app' 
             } 
-        } 
+        }
     }
 }
