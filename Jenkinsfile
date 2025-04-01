@@ -21,6 +21,5 @@ pipeline {
                 echo 'Deploying application...' 
             } 
 } 
-221 
 } 
 } 
