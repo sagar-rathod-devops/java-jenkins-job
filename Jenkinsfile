@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Java Application') { 
             steps { 
-                bat './mvnw clean package' 
+                bat 'mvnw.cmd clean package' 
             } 
         }
 
