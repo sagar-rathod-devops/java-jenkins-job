@@ -8,19 +8,19 @@ pipeline {
         }
         stage('Build Java Application') { 
             steps { 
-                sh './mvnw clean package' 
+                bat './mvnw clean package' 
             } 
         }
 
         stage('Build Docker Image') { 
             steps { 
-                sh 'docker build -t my-java-app .' 
+                bat 'docker build -t my-java-app .' 
             } 
         }
 
         stage('Run Docker Container') { 
             steps { 
-                sh 'docker run -d -p 8000:8000 my-java-app' 
+                bat 'docker run -d -p 8000:8000 my-java-app' 
             } 
         }
     }
