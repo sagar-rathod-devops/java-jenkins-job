@@ -6,7 +6,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/sagar-rathod-devops/java-jenkins-job.git'
             }
         }
-    }
         stage('Build') { 
             steps { 
                 echo 'Compiling code...' 
@@ -21,6 +20,6 @@ pipeline {
             steps { 
                 echo 'Deploying application...' 
             } 
-} 
-} 
-} 
+        } 
+    }
+}
