@@ -34,6 +34,6 @@ public class App
     {
         int n = 6;
         printPattern(n);
-        System.out.println("Hello world");
+        // System.out.println("Hello world");
     }
 }
